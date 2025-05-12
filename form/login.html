@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <style>.login-form {
+        background-color: #ffffff; /* Cor de fundo do formulário */
+        padding: 2rem; /* Espaçamento interno */
+        border-radius: 10px; /* Bordas arredondadas */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra do formulário */
+        max-width: 400px; /* Largura máxima do formulário */
+        width: 100%; /* Largura total para telas menores */
+        margin: auto; /* Centraliza o formulário horizontalmente */
+    }
+    
+    .login-form h1 {
+        text-align: center; /* Centraliza o título */
+        font-size: 24px; /* Tamanho do texto */
+        margin-bottom: 1.5rem; /* Margem inferior */
+        color: #333333; /* Cor do texto */
+    }
+    
+    /* Estilos para os campos de entrada */
+    .login-form input[type="email"],
+    .login-form input[type="password"],
+    .login-form input[type="submit"] {
+        width: 100%; /* Largura total */
+        padding: 10px; /* Espaçamento interno */
+        margin-top: 10px; /* Margem superior */
+        margin-bottom: 15px; /* Margem inferior */
+        border: 1px solid #ccc; /* Borda do campo */
+        border-radius: 5px; /* Bordas arredondadas */
+        font-size: 16px; /* Tamanho da fonte */
+    }
+    
+    /* Estilos para o botão de envio */
+    .login-form input[type="submit"] {
+        background-color: #00A8FF; /* Cor do botão */
+        color: white; /* Cor do texto do botão */
+        font-weight: bold; /* Texto em negrito */
+        border: none; /* Sem borda */
+        cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+        transition: background-color 0.3s ease; /* Transição suave na cor */
+    }
+    
+    .login-form input[type="submit"]:hover {
+        background-color: #333333; /* Cor ao passar o mouse */
+    }
+    
+    /* Estilos para links */
+    .login-form a {
+        color: #00A8FF; /* Cor do link */
+        text-decoration: none; /* Remove sublinhado */
+    }
+    
+    .login-form a:hover {
+        text-decoration: underline; /* Sublinha ao passar o mouse */
+    }
+    
+    /* Estilo para a mensagem de inscrição */
+    .login-form p {
+        text-align: center; /* Centraliza o texto */
+        margin-top: 10px; /* Margem superior */
+    }</style>
+</head>
+<body>
+    <main>
+        <div class="frases">
+            <h1>Bem-vindo à Melhor plataforma de cursos online</h1>
+            <p id="frase" class="fade-in">Melhor plataforma de cursos</p> 
+        </div>
+    </main>
+    <aside>
+        <div class="login-form">
+            <h1>Entrar</h1>
+            <form action="Login.php" method="post">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Digite seu email..." required>
+                
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" placeholder="Digite sua senha..." required>
+                
+                <p><a href="Esqueceusenha.html">Esqueceu sua senha?</a></p>
+                <input type="submit" value="Entrar"> 
+                <p class="Inscreva-se">Não tem uma conta? <a href="Cadastro.html" id="inscrever-se">Inscreva-se aqui</a></p>
+            </form>
+        </div>
+        </aside>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

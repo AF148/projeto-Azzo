@@ -1,15 +1,15 @@
 CREATE DATABASE IF NOT EXISTS Azzo;
 USE Azzo;
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     telefone VARCHAR(15),
-    sexo ENUM('Feminino', 'Masculino', 'Outro'),
-    data_nascimento DATE,
-    cidade VARCHAR(100),
-    estado VARCHAR(100),
-    endereco VARCHAR(255),
+    genero ENUM('Masculino', 'Feminino', 'Outro') NOT NULL,
+    data_nascimento DATE NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    estado VARCHAR(100) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
     senha VARCHAR(255) NOT NULL
 );

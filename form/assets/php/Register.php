@@ -1,42 +1,76 @@
 <?php
-// Configurações do banco de dados (substitua com suas informações)
-$servername = "localhost"; // Ou o endereço do seu servidor de banco de dados
-$username = "root"; // Seu usuário do banco de dados
-$password = ""; // Sua senha do banco de dados
+// Exibir erros para depuração
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+// Configurações do banco de dados
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "azzo"; // Substitua pelo nome correto do seu banco
 
 // Cria a conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Verifica a conexão
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
-// Coleta os dados do formulário
-$nome = $_POST["nome"];
-$email = $_POST["email"];
-$telefone = $_POST["telefone"];
-$genero = $_POST["genero"];
-$datanascimento = $_POST["datanascimento"];
-$cidade = $_POST["cidade"];
-$estado = $_POST["estado"];
-$endereco = $_POST["endereco"];
-$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT); // Hash da senha para segurança
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Coleta os dados do formulário garantindo que não estejam vazios
+    $nome = isset($_POST["nome"]) ? trim($_POST["nome"]) : '';
+    $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
+    $telefone = isset($_POST["telefone"]) ? trim($_POST["telefone"]) : '';
+    $genero = isset($_POST["genero"]) ? trim($_POST["genero"]) : '';
+    $datanascimento = isset($_POST["datanascimento"]) ? trim($_POST["datanascimento"]) : '';
+    $cidade = isset($_POST["cidade"]) ? trim($_POST["cidade"]) : '';
+    $estado = isset($_POST["estado"]) ? trim($_POST["estado"]) : '';
+    $endereco = isset($_POST["endereco"]) ? trim($_POST["endereco"]) : '';
+    $senha = isset($_POST["senha"]) ? password_hash(trim($_POST["senha"]), PASSWORD_DEFAULT) : '';
 
-// Prepara a instrução SQL para inserir os dados
-$sql = "INSERT INTO usuarios (nome, email, telefone, genero, datanascimento, cidade, estado, endereco, senha)
-        VALUES ('$nome', '$email', '$telefone', '$genero', '$datanascimento', '$cidade', '$estado', '$endereco', '$senha')";
+    // Verifica se campos obrigatórios estão preenchidos
+    if (empty($email) || empty($senha)) {
+        die("Erro: O campo 'email' e 'senha' são obrigatórios!");
+    }
 
-// Executa a instrução SQL e verifica se foi bem-sucedida
-if ($conn->query($sql) === TRUE) {
-    echo "Cadastro realizado com sucesso!";
-    // Redireciona para uma página de sucesso após 3 segundos (opcional)
-    header("refresh:3;url=pagina_de_sucesso.html");
+    // Verifica se o email já existe no banco antes de inserir
+    $stmt_check = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt_check->bind_param("s", $email);
+    $stmt_check->execute();
+    $stmt_check->store_result();
+
+    if ($stmt_check->num_rows > 0) {
+        die("Erro: Esse email já está cadastrado!");
+    }
+
+    $stmt_check->close();
+
+    // Prepara a inserção segura dos dados no banco
+    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, genero, datanascimento, cidade, estado, endereco, senha) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $nome, $email, $telefone, $genero, $datanascimento, $cidade, $estado, $endereco, $senha);
+
+    // Executa a inserção e verifica se foi bem-sucedida
+    if ($stmt->execute()) {
+        echo "Cadastro realizado com sucesso!";
+        header("refresh:3;url=pagina_de_sucesso.html"); // Redireciona após 3 segundos
+        exit();
+    } else {
+        echo "Erro ao cadastrar: " . $stmt->error;
+    }
+
+    // Fecha a conexão
+    $stmt->close();
+    $conn->close();
 } else {
-    echo "Erro ao cadastrar: " . $conn->error;
+    echo "Erro: O formulário não foi enviado corretamente.";
 }
 
-// Fecha a conexão com o banco de dados
-$conn->close();
+if (!$resultado) {
+    echo "Erro na inserção: " . mysqli_error($conn);
+}
+
+
 ?>

@@ -7,7 +7,7 @@ CREATE TABLE usuarios (
     email VARCHAR(100) NOT NULL UNIQUE,
     telefone VARCHAR(15),
     genero ENUM('Masculino', 'Feminino', 'Outro') NOT NULL,
-    data_nascimento DATE NOT NULL,
+    datanascimento DATE NOT NULL,
     cidade VARCHAR(100) NOT NULL,
     estado VARCHAR(100) NOT NULL,
     endereco VARCHAR(255) NOT NULL,

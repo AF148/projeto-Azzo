@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // Redireciona para o HTML correto com parâmetro de sucesso
-        header("Location: pos_logado/pós-cadastro.html?sucesso=1");
+        header("Location: logado.php?sucesso=1");
         exit();
     } else {
         echo "Erro ao cadastrar: " . $stmt->error;

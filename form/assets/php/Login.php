@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
             <?php endif; ?>
 
-            <p>Não tem uma conta? <a href="Cadastro.html">Inscreva-se aqui</a></p>
+            <p>Não tem uma conta? <a href="cadastro.php">Inscreva-se aqui</a></p>
         </form>
     </div>
 </body>

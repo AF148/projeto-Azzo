@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo ao meu site</title>
-    <link rel="stylesheet" href="assets/css/cadastrado.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    
     <script>
+        // Verificar se há o parâmetro "sucesso=1" na URL
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             if (params.get("sucesso") === "1") {
-                document.getElementById("mensagem").innerHTML = "<p class='sucesso'>Cadastro realizado com sucesso!</p>";
-                document.getElementById("formulario").reset(); // Limpa os campos do formulário
-                document.getElementById("botaoLogin").style.display = "block"; // Exibe o botão de login
+                document.getElementById("mensagem").innerHTML = "<p style='color: green;'>Cadastro realizado com sucesso!</p>";
             }
         };
     </script>
 </head>
 <body>
     <div class="box">
-        <!-- Mensagem de sucesso -->
-        <div id="mensagem"></div>
-
-        <form id="formulario" action="assets/php/Register.php" method="POST">
+        <form action="assets/php/Register.php" method="POST">
             <input type="text" name="nome" placeholder="Digite seu Nome Completo..." required>
             <input type="email" name="email" placeholder="Digite seu Email..." required>
             <input type="text" name="telefone" placeholder="Digite seu Telefone..." required>
@@ -36,8 +38,8 @@
             <input type="submit" value="Cadastrar">
         </form>
 
-        <!-- Botão para retornar à tela de login -->
-        <button id="botaoLogin" onclick="window.location.href='login.html'" style="display: none;">Ir para Login</button>
+        <!-- Div onde a mensagem será exibida -->
+        <div id="mensagem"></div>
     </div>
 </body>
 </html>

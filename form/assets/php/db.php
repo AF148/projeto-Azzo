@@ -1,8 +1,9 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = ""; // Se houver uma senha, coloque-a aqui.
-$dbname = "Azzo";
+$host = "database-2.cluxzvykkdac.us-east-1.rds.amazonaws.com";
+$user = "admin";
+$password = "adminadmin"; // Se houver uma senha, coloque-a aqui.
+$dbname = "azzo";
+$port = 3306;
 
 $conn = new mysqli($host, $user, $password, $dbname);
 

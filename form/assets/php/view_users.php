@@ -4,9 +4,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Configurações do banco de dados
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "database-2.cluxzvykkdac.us-east-1.rds.amazonaws.com:3306";
+$username = "admin";
+$password = "adminadmin";
 $database = "azzo"; // Substitua pelo nome correto do seu banco
 
 // Cria a conexão
